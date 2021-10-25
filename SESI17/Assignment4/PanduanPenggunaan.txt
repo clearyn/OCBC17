@@ -1,7 +1,7 @@
 //Nama : Ryan Cleary
 //Tugas : Assignment 4 (003-FSD_RyanCleary)
 //Kode : FSDO001ONL003
-//Github : 
+//Github : https://github.com/clearyn/OCBC17/tree/master/SESI17/Assignment4
 //Note: Untuk Quotinent dan Remainder dihitung berdasarkan nilai input paling besar (Contoh b > a, maka b / a)
 
 //Panduan
