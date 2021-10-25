@@ -1,0 +1,10 @@
+//Nama : Ryan Cleary
+//Tugas : Assignment 4
+//Kode : FSDO001ONL003
+//Github : 
+
+
+//Panduan
+1.Run code melalui node pada direktori file berada dengan perintah 'node 003-FSD_RyanCleary [Angka Pertama] [Angka Kedua]'.
+2.Contoh 'node 003-FSD_RyanCleary [Angka Pertama] [Angka Kedua]'.
+3.Apabila script menampilkan 'Nilai A atau B tidak boleh kosong lihat kembali panduan no 1.
