@@ -1,10 +1,13 @@
 //Nama : Ryan Cleary
-//Tugas : Assignment 4
+//Tugas : Assignment 4 (003-FSD_RyanCleary)
 //Kode : FSDO001ONL003
 //Github : 
-
+//Note: Untuk Quotinent dan Remainder dihitung berdasarkan nilai input paling besar (Contoh b > a, maka b / a)
 
 //Panduan
-1.Run code melalui node pada direktori file berada dengan perintah 'node 003-FSD_RyanCleary [Angka Pertama] [Angka Kedua]'.
-2.Contoh 'node 003-FSD_RyanCleary [Angka Pertama] [Angka Kedua]'.
-3.Apabila script menampilkan 'Nilai A atau B tidak boleh kosong lihat kembali panduan no 1.
+1.Extract file Kalkulator.js
+1.Run code melalui node pada direktori file berada dengan perintah 'node Kalkulator [Angka Pertama] [Angka Kedua]'.
+2.Contoh: 'node Kalkulator [Angka Pertama] [Angka Kedua]'.
+3.Apabila script menampilkan 'Nilai A atau B tidak boleh kosong lihat kembali panduan no 2.
+
+Terima Kasih
