@@ -7,7 +7,5 @@ import { Component } from "@angular/core";
 })
 
 export class AsideComponent{
-    currentCustomer = 'Maria';
-
-    title = 'Feature product:'
+    currentCustomer = 'Robert';
 }

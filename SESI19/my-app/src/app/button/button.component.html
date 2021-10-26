@@ -1,6 +1,15 @@
 <div>
+    <h2>Two way binding example</h2>
     <label>MyCounter: {{currentNumber}} </label>
     <button (click)="onChange(1)" title="increment">Increment</button>
     <button (click)="onChange(2)" title="decrement">Decrement</button>
     <button (click)="onChange()" title="reset">Reset</button>
+</div>
+<div>
+    <label>Record: </label>
+    <div>
+        <ul>
+            <li *ngFor="values">{{items}}</li>
+        </ul>
+    </div>
 </div>
