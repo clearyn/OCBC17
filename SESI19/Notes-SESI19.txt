@@ -18,3 +18,10 @@ npx tsc --init
 
 //compile tsc
 tsc nama_file.ts 
+
+
+//Component
+ng g component header
+
+//Component manual
+mkdir aside
