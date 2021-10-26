@@ -1,0 +1,31 @@
+# Share: Angular sesi 19
+
+1. install angular CLI -> npm install -g @angular/cli
+2. ng new <NAMA_PROJECT>
+   - routing? no
+   - stylesheet? css
+3. struktur:
+   - src           --> source code project
+     - app          -> semua components/service/modules/etc.
+       - app.module    -> AppModule 
+     - assets       ->
+     - environments ->
+     - index.html   ->
+     - main.ts      -> 
+   - node_modules  --> module yang ter-install lewat NPM
+   - angular.json  --> konfigurasi angular
+   - karma.conf.js --> unit testing
+   - tsconfig.json --> konfigurasi typescript
+
+
+## Typescript
+
+### Instalasi
+
+#### Lokal
+
+1. Install `typescript` dengan `npm i typescript`
+2. Inisialisasi TypeScript dengan `npx tsc --init` (optional)
+3. Buat file `index.ts`
+4. Compile dengan `npx tsc [NAMA_FILE].ts`, akan memiliki output `[NAMA_FILE].js`
+5. Jalankan dengan `node [NAMA_FILE].js`

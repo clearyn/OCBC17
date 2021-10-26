@@ -1,0 +1,20 @@
+//Instal via npm
+npm install -g @angular/cli
+
+//new project
+ng new my-app
+
+//solve script blocked
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+//run project
+ng serve --open
+
+//instal typescript
+npm i typescript
+
+//init typescript
+npx tsc --init
+
+//compile tsc
+tsc nama_file.ts 
