@@ -2,4 +2,9 @@
 
 <app-header></app-header>
 <comp-aside></comp-aside>
-<app-button [message]="message" (sendMessageEvent)="showMessage($event)" [(currentNumber)]="defaultCounter" [(items)]="items"></app-button>
+<app-button 
+    [message]="message" 
+    (sendMessageEvent)="showMessage($event)" 
+    [(currentNumber)]="defaultCounter" 
+    [(items)]="items">
+</app-button>
