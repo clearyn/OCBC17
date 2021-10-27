@@ -25,3 +25,6 @@ ng g component header
 
 //Component manual
 mkdir aside
+
+//create pipe
+ng g pipe fileSize

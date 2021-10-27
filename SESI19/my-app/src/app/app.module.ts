@@ -6,6 +6,7 @@ import { AsideComponent } from './aside/aside.component';
 import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './button/button.component';
 import { DirectiveComponent } from './directive/directive.component';
+import { FileSizePipe } from './file-size.pipe';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { DirectiveComponent } from './directive/directive.component';
     AsideComponent,
     HeaderComponent,
     ButtonComponent,
-    DirectiveComponent
+    DirectiveComponent,
+    FileSizePipe
   ],
   imports: [
     BrowserModule
