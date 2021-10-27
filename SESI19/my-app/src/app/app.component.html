@@ -8,3 +8,37 @@
     [(currentNumber)]="defaultCounter" 
     [(items)]="items">
 </app-button>
+
+<label>
+    Say something:
+    <input #message2> {{message2 | json}}
+</label>
+
+<!-- Structural Directive -->
+<h2>ngIf Component</h2>
+<app-directive *ngIf="isActive" [hero]="heroes[0]"></app-directive>
+
+
+<h2 id="ngFor">*ngFor Component</h2>
+<div class="box">
+    <div *ngFor="let hero of heroes">{{hero.id}} - {{hero.name}}</div>
+</div>
+
+<h2 id="ngForTemplate">template ngForOF Heroes</h2>
+<ng-template ngFor let-hero [ngForOf] = "heroes" let-i="index">
+    <div>({{i}}) {{hero.name}}</div>
+    <div>emotion: {{hero.emotion ? hero.emotion : '-'}}</div>
+</ng-template>
+
+<h2 id="ngForComponent">Component ngFor</h2>
+<app-directive *ngFor="let hero of heroes" [hero]="hero"></app-directive>
+
+<h2 id="ngSwtich">Component ngSwtich</h2>
+<ng-template ngFor let-person [ngForOf] = "people">
+    <ul [ngSwitch] = "person.country">
+        <li *ngSwitchCase="'UK'" class="text-blue">{{person.name}} {{person.age}} {{person.country}}</li>
+        <li *ngSwitchCase="'USA'" class="text-red">{{person.name}} {{person.age}} {{person.country}}</li>
+        <li *ngSwitchCase="'HK'" class="text-green">{{person.name}} {{person.age}} {{person.country}}</li>
+        <li *ngSwitchDefault>{{person.name}} {{person.country}}</li>
+    </ul>
+</ng-template>

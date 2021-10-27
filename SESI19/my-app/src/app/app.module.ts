@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AsideComponent } from './aside/aside.component';
 import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './button/button.component';
+import { DirectiveComponent } from './directive/directive.component';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ButtonComponent } from './button/button.component';
     AppComponent,
     AsideComponent,
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    DirectiveComponent
   ],
   imports: [
     BrowserModule
