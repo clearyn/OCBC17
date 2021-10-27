@@ -1,17 +1,20 @@
-<app-header></app-header>
 <div class="p-3 pb-md-4 mx-auto text-center">
     <h3>Three Most Populated Countries</h3>
     <div class="container">
         <div class="row">
-          <div class="col-sm">
-            One of three columns
+        <!-- Three Row Items -->
+          <div *ngFor="let countryItem of country" class="col-sm">
+            <!-- Card -->
+            <div class="card flex-md-row mb-4 box-shadow bg-brown">
+                <div class="card-body">
+                    <h5 class="card-title">{{countryItem.countryName}}</h5>
+                      <p class="lead mb-0">{{countryItem.population | number}} <br>people</p>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+            <!-- End: Card -->
           </div>
-          <div class="col-sm">
-            One of three columns
-          </div>
-          <div class="col-sm">
-            One of three columns
-          </div>
+        <!-- End:Three Row Items -->
         </div>
       </div>
     <h3>Three Largest Country (Area)</h3>

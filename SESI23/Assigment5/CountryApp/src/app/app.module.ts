@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { CountryDetailComponentComponent } from './country-detail-component/country-detail-component.component';
 import { AllCountriesComponentComponent } from './all-countries-component/all-countries-component.component';
-import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import { HeaderComponent } from './header/header.component';
     HomeComponentComponent,
     CountryDetailComponentComponent,
     AllCountriesComponentComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
