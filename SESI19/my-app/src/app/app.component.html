@@ -42,3 +42,16 @@
         <li *ngSwitchDefault>{{person.name}} {{person.country}}</li>
     </ul>
 </ng-template>
+
+<!-- <ul>
+    <li *ngFor="let person of people" [ngStyle]="{'color': (person.country === 'USA') ? 'red' : (person.country === 'HK') ? 'blue' : (person.country === 'MARS') ? 'green' : ''}">
+        {{person.name}}, {{person.age}}th dari {{person.country}}
+    </li>
+</ul> -->
+
+<!-- <ul>
+    <li *ngFor="let person of people" [class.text-red]="person.country==='USA'" [class.text-blue]="person.country==='HK'" [class.text-green]="person.country==='MARS'">
+        {{person.name}}, {{person.age}}th dari {{person.country}}
+    </li>
+</ul> -->
+
