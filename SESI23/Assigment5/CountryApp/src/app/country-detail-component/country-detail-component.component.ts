@@ -22,7 +22,7 @@ export class CountryDetailComponentComponent implements OnInit {
   ngOnInit(): void {
     this.testId = Number(this.route.snapshot.paramMap.get("id"));
     this.countryData = Country[
-      Number(this.route.snapshot.paramMap.get("id"))
+      Number(this.route.snapshot.paramMap.get("id")) -1
     ];
   }
 
