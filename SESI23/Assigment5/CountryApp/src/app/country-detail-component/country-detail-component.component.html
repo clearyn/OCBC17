@@ -1,1 +1,31 @@
-<p>ID detected {{testId}}</p>
+<div *ngIf="countryData" class="row justify-content-center">
+    <div class="col-auto">
+      <h1 class="text-center">{{countryData.countryName | uppercase}}</h1>
+      <table class="table table-borderless text-left">
+        <tr>
+          <td class="tx-green">Capital:</td>
+          <td  class="text-right">{{countryData.capital}}</td>
+        </tr>
+        <tr>
+          <td class="tx-green">Area:</td>
+          <td>{{countryData.area | number}} km&#178;</td>
+        </tr>
+        <tr>
+          <td class="tx-green">Population:</td>
+          <td>{{countryData.population | number}}</td>
+        </tr>
+        <tr>
+          <td class="tx-green">GDP:</td>
+          <td>{{countryData.gdp | number}} USD</td>
+        </tr>
+        <tr>
+          <td class="tx-green">Currency:</td>
+          <td>{{countryData.currency}}</td>
+        </tr>
+        <tr>
+          <button (click)="back()" class="btn-danger">Go back</button>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>

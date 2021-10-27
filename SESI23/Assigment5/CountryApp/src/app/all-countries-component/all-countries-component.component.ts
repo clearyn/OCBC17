@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Country } from '../country'
 
 @Component({
   selector: 'app-all-countries-component',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-countries-component.component.css']
 })
 export class AllCountriesComponentComponent implements OnInit {
+
+  //Parent->Child
+  @Input() country = Country;
 
   constructor() { }
 

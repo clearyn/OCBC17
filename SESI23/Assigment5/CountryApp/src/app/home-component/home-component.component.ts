@@ -18,7 +18,18 @@ export class HomeComponentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+    this.mostPopulated = this.getThreeMostPopulatedCountries(this.country);
+    this.threeLargest = this.getThreeLargestCountries(this.country);
+  }
+
+  getThreeMostPopulatedCountries(country: Country[]){
+    return country.sort((a, b) => b.population - a.population)
+    .slice(0, 3)
+  }
+
+  getThreeLargestCountries(country: Country[]){
+    return country.sort((a, b) => b.area - a.area)
+    .slice(0, 3)
   }
 
 }

@@ -1,29 +1,20 @@
 <div class="p-3 pb-md-4 mx-auto text-center">
-    <h3>List of All the Countries in Our Database</h3>
-    <div class="container">
-        <div class="row">
-        <!-- Three Row Items -->
-          <div class="col-sm">
-            <!-- Card -->
-            <div class="card flex-md-row mb-4 box-shadow bg-green">
-                <div class="card-body">
-                    <h5 class="card-title">Card with stretched link</h5>
-                    <a href="#" class="stretched-link"></a>
-                </div>
-            </div>
-            <!-- End: Card -->
+  <h3>List of All the Countries in Our Database</h3>
+  <div class="container">
+      <div class="row">
+      <!-- Three Row Items -->
+        <div *ngFor="let countryItem of country" class="col-sm">
+          <!-- Card -->
+          <div class="card flex-md-row mb-4 box-shadow bg-green">
+              <div class="card-body">
+                  <h5 class="card-title">{{countryItem.countryName}}</h5>
+                    <p class="lead mb-0">Capital <br>{{(countryItem.capital)}}</p>
+                  <a href="/country-detail-component/{{countryItem.id}}" class="stretched-link"></a>
+              </div>
           </div>
-          <div class="col-sm">
-            <!-- Card -->
-            <div class="card flex-md-row mb-4 box-shadow">
-                <div class="card-body">
-                    <h5 class="card-title">Card with stretched link</h5>
-                    <a href="#" class="stretched-link"></a>
-                </div>
-            </div>
-            <!-- End: Card -->
-          </div>
-        <!-- End:Three Row Items -->
+          <!-- End: Card -->
         </div>
+      <!-- End:Three Row Items -->
       </div>
+    </div>
 </div>

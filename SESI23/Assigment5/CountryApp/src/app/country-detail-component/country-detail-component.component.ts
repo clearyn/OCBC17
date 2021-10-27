@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Country} from "../country";
+import {UpperCasePipe} from "@angular/common";
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-country-detail-component',
@@ -12,7 +14,9 @@ export class CountryDetailComponentComponent implements OnInit {
   countryData?: Country;
 
   constructor(
-    private route : ActivatedRoute
+    private route : ActivatedRoute,
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -20,6 +24,10 @@ export class CountryDetailComponentComponent implements OnInit {
     this.countryData = Country[
       Number(this.route.snapshot.paramMap.get("id"))
     ];
+  }
+
+  back(): void {
+    this.location.back()
   }
 
 }
