@@ -52,4 +52,7 @@ export class AppComponent {
     }
   ];
 
+  //Angular Pipe
+  today = new Date();
+  
 }
