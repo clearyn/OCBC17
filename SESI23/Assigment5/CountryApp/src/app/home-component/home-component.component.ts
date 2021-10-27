@@ -12,9 +12,13 @@ export class HomeComponentComponent implements OnInit {
   //Parent->Child
   @Input() country = Country;
 
+  mostPopulated: Country[] = [];
+  threeLargest: Country[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
