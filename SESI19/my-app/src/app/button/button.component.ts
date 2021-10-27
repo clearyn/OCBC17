@@ -6,6 +6,18 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
+  //Parent->Child
+  @Input() message = "";
+
+  //Child->Parent
+  // 1 - tambahkan directive @Output di sini
+  @Output() sendMessageEvent = new EventEmitter<string>()
+  // 2 - buat event handler-nya
+  sendMessage () {
+    this.sendMessageEvent.emit("Hi, parent! I'm your child.")
+  }
+  
+  //Two Way Binding
   @Input()  currentNumber!: number;
   @Output() currentNumberChange = new EventEmitter<number>();
 

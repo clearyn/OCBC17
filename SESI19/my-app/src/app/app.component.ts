@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+  message = "Hi! I'm your parent."
   defaultCounter = 0;
   items: string[] = [];
+  
+  showMessage (message: string) {
+    this.message = message
+  }
 }

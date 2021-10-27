@@ -1,3 +1,5 @@
+<p>Incoming message: {{ message }}</p>
+<button (click)="sendMessage()">Hit me</button>
 <div>
     <h2>Two way binding example</h2>
     <label>MyCounter: {{currentNumber}} </label>
@@ -9,7 +11,7 @@
     <label>Record: </label>
     <div>
         <ul>
-            <li *ngFor="values">{{items}}</li>
+            <li *ngFor="items">{{items}}</li>
         </ul>
     </div>
 </div>
