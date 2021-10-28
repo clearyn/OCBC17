@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Todo } from '../../models/Todo'
 
 @Component({
@@ -10,14 +11,29 @@ export class AddTodoFormComponent {
   @Output() newTodoEvent = new EventEmitter<Todo>();
   
   inputTodo: string = "";
+  isSubmitted = false;
 
-  addTodo(){
-    const todo: Todo = {
-      content: this.inputTodo,
-      completed: false
-    };
+  todoForm = new FormGroup({
+    todoNewItems: new FormControl('', [Validators.required, Validators.minLength(10)] )
+  });
 
-    this.newTodoEvent.emit(todo);
-    this.inputTodo = "";
-  }
+  get todoNewItems(){
+    return this.todoForm.get('todoNewItems');
+  };
+
+  onSubmit(){
+    this.isSubmitted = true;
+    if (!this.todoNewItems?.invalid){
+      const todo: Todo = {
+        content: this.todoForm.value.todoNewItems,
+        completed: false
+      };
+      this.newTodoEvent.emit(todo);
+    }
+  };
+
+  handleIsSubmittedState(){
+    if (this.isSubmitted == true)
+      this.isSubmitted = false;
+  };
 }

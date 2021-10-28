@@ -79,8 +79,8 @@ export class TodoListComponent implements OnInit {
   };
 
   deleteTodo(id:number){
-    this.todos = this.todos.filter((v, i) => i !== id);
     this.alertWithSuccess(this.todos[id].content, 0);
+    this.todos = this.todos.filter((v, i) => i !== id);
   }
 
   addTodo(todo: Todo){

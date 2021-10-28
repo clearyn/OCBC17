@@ -1,17 +1,21 @@
-<form>
+<form [formGroup]="todoForm" (ngSubmit) ="onSubmit()">
     <div class="input-group mb-3">
         <input 
-        type="text"
-        name="inputTodo"
-        placeholder="Enter Todo.."
-        class="form-control"
-        [(ngModel)]="inputTodo"
+            (change)="handleIsSubmittedState()"
+            type="text"
+            name="inputTodo"
+            placeholder="Enter Todo.."
+            class="form-control"
+            id="todoNewItems"
+            name="todoNewItems"
+            formControlName="todoNewItems"
         />
-        <input 
-        type="submit"
-        value = "Add Todo"
-        class = "btn btn-primary"
-        (click) = "addTodo()"
-        />
+        <button 
+            type="submit"
+            class="btn btn-success"
+        >Add new todo</button>
+    </div>
+    <div *ngIf="todoNewItems && todoNewItems?.errors?.minlength && isSubmitted == true" style="color: red;">
+        Todo new item is required with minimum length {{todoNewItems?.errors?.minlength?.requiredLength}}, or username is required!
     </div>
 </form>
