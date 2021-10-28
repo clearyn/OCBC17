@@ -18,6 +18,8 @@ export class ReactiveFormComponent{
     password: new FormControl('', [Validators.required, Validators.minLength(5)] )
   });
 
+  isSubmitted = false;
+
   get username(){
     return this.loginForm.get('username');
   };
@@ -27,13 +29,19 @@ export class ReactiveFormComponent{
   };
 
   onLogin(){
-    console.log(this.loginForm);
+    this.isSubmitted = true;
+    if (!this.username?.invalid || !this.password?.invalid) {
+      this.currentUser = {
+        isLogin: true,
+        username: this.loginForm.value.username,
+        password: this.loginForm.value.password
+      };
+    }
+  };
 
-    this.currentUser = {
-      isLogin: true,
-      username: this.loginForm.value.username,
-      password: this.loginForm.value.password
-    };
+  handleIsSubmittedState(){
+    if (this.isSubmitted == true)
+      this.isSubmitted = false;
   };
 
 }
