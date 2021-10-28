@@ -15,7 +15,7 @@
             class="btn btn-success"
         >Add new todo</button>
     </div>
-    <div *ngIf="todoNewItems && todoNewItems?.errors?.minlength && isSubmitted == true" style="color: red;">
-        Todo new item is required with minimum length {{todoNewItems?.errors?.minlength?.requiredLength}}, or username is required!
+    <div *ngIf="todoNewItems && (todoNewItems?.errors?.minlength || todoNewItems?.errors?.required) && isSubmitted == true" style="color: red;">
+        Todo new item is required with minimum length {{todoNewItems?.errors?.minlength?.requiredLength}} and cannot be empty!
     </div>
 </form>
