@@ -14,7 +14,7 @@ export class AddTodoFormComponent {
   isSubmitted = false;
 
   todoForm = new FormGroup({
-    todoNewItems: new FormControl('', [Validators.required, Validators.minLength(10)] )
+    todoNewItems: new FormControl('', [Validators.required, Validators.minLength(15)] )
   });
 
   get todoNewItems(){
