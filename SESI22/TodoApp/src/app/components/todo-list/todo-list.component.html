@@ -1,5 +1,5 @@
 <h1>Todo List</h1>
-<app-add-todo-form (newTodoEvent)="addTodo($event)"></app-add-todo-form>
+<app-add-todo-form (newTodoEvent)="addTodo($event)"></app-add-todo-form><br>
 
 <ol *ngFor="let todo of todos let i = index;" class="list-group">
     <li class="list-group-item d-flex justify-content-beetween align-items-start ">
