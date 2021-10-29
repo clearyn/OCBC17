@@ -17,7 +17,12 @@ export class AddTodoFormComponent {
     errors: any;
   } = {
     todoForm: new FormGroup({
-      todoNewItems: new FormControl('', [Validators.required, Validators.minLength(15)] )
+      todoNewItems: new FormControl('',
+       [
+        Validators.required,
+        Validators.minLength(15),
+        Validators.pattern("[a-zA-Z ]*")
+      ] )
     }),
     isSubmitted: false,
     errors: {}
