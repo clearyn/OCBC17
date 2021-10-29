@@ -5,6 +5,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">{{product.description}}</p>
+                <h2 class="card-title pricing-card-title">${{product.price}}<small class="text-muted fw-light">/12 pcs</small></h2>
                 <button [routerLink]="['/product-detail/', product.id]" class="btn btn-danger">
                     Check Product
                 </button>
