@@ -9,33 +9,50 @@ import { Todo } from '../../models/Todo'
 })
 export class AddTodoFormComponent {
   @Output() newTodoEvent = new EventEmitter<Todo>();
-  
-  inputTodo: string = "";
-  isSubmitted = false;
 
-  todoForm = new FormGroup({
-    todoNewItems: new FormControl('', [Validators.required, Validators.minLength(15)] )
-  });
+  //Update 10/29/2021 Update element form element into 1 merged object
+  form: {
+    todoForm: FormGroup;
+    isSubmitted: boolean;
+    errors: any;
+  } = {
+    todoForm: new FormGroup({
+      todoNewItems: new FormControl('', [Validators.required, Validators.minLength(15)] )
+    }),
+    isSubmitted: false,
+    errors: {}
+  }
 
+  //Getter for form spesific value
   get todoNewItems(){
-    return this.todoForm.get('todoNewItems');
+    return this.form.todoForm.get('todoNewItems');
   };
 
+  //Push error & Delete error from array object in form
+  validateForm () {
+    if(this.todoNewItems?.errors)
+      this.form.errors.todoNewItems = { ...this.todoNewItems?.errors }
+    else
+      delete this.form.errors.todoNewItems
+  };
+
+  //Handle event submit form
   onSubmit(){
-    this.isSubmitted = true;
-    if (!this.todoNewItems?.invalid){
+    this.switchSubmittedState(true);
+    this.validateForm();
+    if (Object.keys(this.form.errors).length === 0){
       const todo: Todo = {
-        content: this.todoForm.value.todoNewItems,
+        content: this.form.todoForm.value.todoNewItems,
         completed: false
       };
       this.newTodoEvent.emit(todo);
-      this.todoForm.reset();
-      this.isSubmitted = false;
+      this.form.todoForm.reset();
     }
   };
 
-  handleIsSubmittedState(){
-    if (this.isSubmitted == true)
-      this.isSubmitted = false;
-  };
+  //Change submitted form state
+  switchSubmittedState (state: boolean) {
+    this.form.isSubmitted = state;
+  }; 
+
 }
