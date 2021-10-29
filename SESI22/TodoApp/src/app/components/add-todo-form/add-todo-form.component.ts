@@ -29,6 +29,8 @@ export class AddTodoFormComponent {
         completed: false
       };
       this.newTodoEvent.emit(todo);
+      this.todoForm.reset();
+      this.isSubmitted = false;
     }
   };
 
