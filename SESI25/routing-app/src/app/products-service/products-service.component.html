@@ -1,15 +1,14 @@
 <div class="row">
-    <h2>Product without Services</h2>
+    <h2>Product with Services</h2>
     <div class="col-sm-4" *ngFor="let product of products">
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">{{product.description}}</p>
-                <button [routerLink]="['/product-detail/', product.id]" class="btn btn-primary">
+                <button [routerLink]="['/product-detail/', product.id]" class="btn btn-danger">
                     Check Product
                 </button>
             </div>
         </div>
     </div>
 </div>
-<app-products-service></app-products-service>

@@ -5,12 +5,14 @@ import { AboutComponent } from './about/about.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
+import { ProductsServiceComponent } from './products-service/products-service.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
   { path: 'products', component: ProductsComponent},
+  { path: 'products-service', component: ProductsServiceComponent},
   { path: 'product-detail/:id', component: ProductDetailComponent},
   { path: '**', component: NoPageFoundComponent}
 ];
