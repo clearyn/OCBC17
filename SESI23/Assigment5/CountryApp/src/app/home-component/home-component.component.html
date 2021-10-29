@@ -1,3 +1,44 @@
+<div class="container p-3 pb-md-4 mx-auto text-center">
+  <h4 class="pb-2 border-bottom">Three Most Populated Countries</h4><br>
+  <div class="container">
+    <div class="row">
+    <!-- Three Row Items -->
+      <div *ngFor="let countryItem of mostPopulated ; let i = index" class="col-sm">
+        <!-- Card -->
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-header">{{i + 1}}# Most Populated</div>
+          <div class="card-body">
+            <h5 class="card-title">{{countryItem.countryName}}</h5>
+            <p class="card-text">{{countryItem.population | number}} <br>people</p>
+          </div>
+        </div>
+        <!-- End: Card -->
+      </div>
+    <!-- End:Three Row Items -->
+    </div>
+  </div>
+  <br>
+  <h4 class="pb-2 border-bottom">Three Largest Country (Area)</h4><br>
+  <div class="container">
+    <div class="row">
+    <!-- Three Row Items -->
+      <div *ngFor="let countryItem of threeLargest ; let i = index" class="col-sm">
+        <!-- Card -->
+        <div class="card text-white bg-secondary mb-3">
+          <div class="card-header">{{i + 1}}# Largest</div>
+          <div class="card-body">
+            <h5 class="card-title">{{countryItem.countryName}}</h5>
+            <p class="card-text">{{countryItem.population | number}} km&#178;</p>
+          </div>
+        </div>
+        <!-- End: Card -->
+      </div>
+    <!-- End:Three Row Items -->
+    </div>
+  </div>
+</div>
+
+<!-- Default Style -->
 <div class="p-3 pb-md-4 mx-auto text-center">
     <h3>Three Most Populated Countries</h3>
     <div class="container">
@@ -36,3 +77,4 @@
       </div>
     </div>
 </div>
+<!-- Default Style -->

@@ -5,6 +5,7 @@ import { AllCountriesComponentComponent } from "./all-countries-component/all-co
 import { CountryDetailComponentComponent } from "./country-detail-component/country-detail-component.component";
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home-component', pathMatch: 'full'},
   { path: 'home-component', component: HomeComponentComponent },
   { path: 'all-countries-component', component: AllCountriesComponentComponent },
   { path: 'country-detail-component/:id', component: CountryDetailComponentComponent },
