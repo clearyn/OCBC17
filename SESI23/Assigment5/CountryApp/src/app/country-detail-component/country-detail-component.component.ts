@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Country} from "../models/country";
 import {UpperCasePipe} from "@angular/common";
 import { Location } from '@angular/common'
-import { CountryService } from '../country.service';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-country-detail-component',
@@ -22,14 +22,14 @@ export class CountryDetailComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.testId = Number(this.route.snapshot.params.id);
-    this.getOneCountry(this.route.snapshot.params.id);
+    this.getCountryById(this.route.snapshot.params.id);
   }
 
   back(): void {
     this.location.back()
   }
 
-  getOneCountry(id: number) {
+  getCountryById(id: number) {
     let country: Country;
     this.productService
       .getCountryById(id)

@@ -3,6 +3,25 @@
   <div class="container">
       <div class="row">
       <!-- Three Row Items -->
+        <div *ngFor="let countryItem of countries; let i = index" class="col-sm">
+          <!-- Card -->
+          <div [routerLink]="['/country-detail-component/', countryItem.id]" class="card text-white bg-secondary mb-3">
+            <div class="card-header">{{i + 1}}# Country</div>
+            <div class="card-body">
+              <h5 class="card-title">{{countryItem.countryName}}</h5>
+              <p class="card-text">{{countryItem.population | number}} <br>people</p>
+            </div>
+          </div>
+          <!-- End: Card -->
+        </div>
+      <!-- End:Three Row Items -->
+      </div>
+</div>
+<div class="p-3 pb-md-4 mx-auto text-center">
+  <h3>List of All the Countries in Our Database</h3>
+  <div class="container">
+      <div class="row">
+      <!-- Three Row Items -->
         <div *ngFor="let countryItem of countries" class="col-sm">
           <!-- Card -->
           <div class="card flex-md-row mb-4 box-shadow bg-green">

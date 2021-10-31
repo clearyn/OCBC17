@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Country } from './models/country';
-import { COUNTRIES } from './models/mock-country';
+import { Country } from '../app/models/country';
+import { COUNTRIES } from '../app/models/mock-country';
 
 @Injectable({
   providedIn: 'root'

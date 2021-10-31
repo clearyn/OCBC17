@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../models/country'
 import {DecimalPipe} from "@angular/common";
-import { CountryService } from '../country.service';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-home-component',
