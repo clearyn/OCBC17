@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Product } from 'src/models/product';
-import { productService } from 'src/models/mock-products';
-import { Observable, ObservedValueOf, of } from 'rxjs';
+import { Products } from 'src/app/models/product';
+import { PRODUCTS } from 'src/app/models/mock-products';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,14 @@ export class ProductService {
 
   constructor() { };
   
-  getProducts(): Observable<Product[]> {
-    const products = of(productService);
-
-    console.log("Fetched list of products....");
+  products = of(PRODUCTS);
+  getProducts(): Observable<Products[]> {
+    const products = of(PRODUCTS);
     return products;
-  };
+  }
+
+  getOneProduct(id: number): Observable<Products> {
+    return this.products.pipe(map(products => products.filter(product => product.id == id)[0]))
+  }
   
 }
