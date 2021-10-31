@@ -1,13 +1,6 @@
-export interface Country {
-    id: number;
-    countryName: string;
-    capital: string;
-    area: number;
-    population: number;
-    gdp: number;
-    currency: string;
-}
-export const Country = [
+import { Country } from "./country";
+
+export const COUNTRIES: Country[] = [
     { id: 1, countryName: 'United States', capital: 'Washington, D.C', area: 9525067, population: 325365189, gdp: 18569100, currency: "United States Dollar" },
     { id: 2, countryName: 'Japan', capital: 'Tokyo', area: 364555, population: 126476461, gdp: 5064872, currency: "Japanese Yen" },
     { id: 3, countryName: 'Rusia', capital: 'Moscow', area: 532425, population: 145934462, gdp: 9569100, currency: "Russian Ruble" },

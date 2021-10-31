@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Country } from '../country'
+import { Component, OnInit } from '@angular/core';
+import { Country } from '../models/country'
 import {DecimalPipe} from "@angular/common";
+import { CountryService } from '../country.service';
 
 @Component({
   selector: 'app-home-component',
@@ -9,17 +10,21 @@ import {DecimalPipe} from "@angular/common";
 })
 export class HomeComponentComponent implements OnInit {
   
-  //Parent->Child
-  @Input() country = Country;
-
+  countries: Country[] = [];
   mostPopulated: Country[] = [];
   threeLargest: Country[] = [];
 
-  constructor() { }
+  constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
-    this.mostPopulated = this.getThreeMostPopulatedCountries(this.country);
-    this.threeLargest = this.getThreeLargestCountries(this.country);
+    this.getCountries();
+    this.mostPopulated = this.getThreeMostPopulatedCountries(this.countries);
+    this.threeLargest = this.getThreeLargestCountries(this.countries);
+  }
+
+  getCountries() {
+    this.countryService.getCountry()
+      .subscribe((countries) => (this.countries = countries));
   }
 
   getThreeMostPopulatedCountries(country: Country[]){

@@ -5,7 +5,7 @@
     <!-- Three Row Items -->
       <div *ngFor="let countryItem of mostPopulated ; let i = index" class="col-sm">
         <!-- Card -->
-        <div class="card text-white bg-primary mb-3">
+        <div [routerLink]="['/country-detail-component/', countryItem.id]" class="card text-white bg-primary mb-3">
           <div class="card-header">{{i + 1}}# Most Populated</div>
           <div class="card-body">
             <h5 class="card-title">{{countryItem.countryName}}</h5>
@@ -24,7 +24,7 @@
     <!-- Three Row Items -->
       <div *ngFor="let countryItem of threeLargest ; let i = index" class="col-sm">
         <!-- Card -->
-        <div class="card text-white bg-secondary mb-3">
+        <div [routerLink]="['/country-detail-component/', countryItem.id]" class="card text-white bg-secondary mb-3">
           <div class="card-header">{{i + 1}}# Largest</div>
           <div class="card-body">
             <h5 class="card-title">{{countryItem.countryName}}</h5>
