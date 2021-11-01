@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../Models/user';
+import { User, UserForm } from '../Models/user';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
@@ -29,10 +29,10 @@ export class UserService {
   }
 
   // POST
-  postUser(user: User) {
+  postUser(userForm: UserForm):  Observable<any> {
     let api = `${this.endpoint}`;
     return this.http
-      .post(api, user)
+      .post(api, userForm)
       .pipe(catchError(this.handleError));
   }
 
@@ -45,7 +45,7 @@ export class UserService {
   }
 
   // DELETE: id
-  deleteUserById(id: Number) {
+  deleteUserById(id: Number) : Observable<any> {
     let api = `${this.endpoint}/${id}`;
     return this.http
       .delete(api)

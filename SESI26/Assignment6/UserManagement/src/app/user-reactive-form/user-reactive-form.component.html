@@ -1,1 +1,43 @@
-<p>user-reactive-form works!</p>
+<h2 mat-dialog-title>Add User</h2>
+<form [formGroup]="form.userFormGroup" (ngSubmit) ="onSubmit()">
+    <mat-dialog-content class="mat-typography">
+        <div layout="column" layout-align="center center">
+            <!-- Title -->
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Title</mat-label>
+                <input (change)="switchSubmittedState(false)" type="text"name="inputTodo" placeholder="Enter Title.."class="form-control"
+                id="title" name="title"formControlName="title" matInput>
+            </mat-form-field>
+            <div class="invalid-errors" style="color: red;" *ngIf="form.isSubmitted && form.errors?.title">
+                <ul>
+                    <li *ngIf="form.errors?.title?.required">Todo new item cannot be empty!</li>
+                    <li *ngIf="form.errors?.title?.minlength">
+                        Todo new item is required with minimum length {{ form.errors?.title?.minlength?.requiredLength }} character.
+                    </li>
+                </ul>
+            </div>
+            <!-- Title -->
+            <!-- Title -->
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Title</mat-label>
+                <input (change)="switchSubmittedState(false)" type="text"name="inputTodo" placeholder="Enter Title.."class="form-control"
+                id="title" name="title"formControlName="title" matInput>
+            </mat-form-field>
+            <div class="invalid-errors" style="color: red;" *ngIf="form.isSubmitted && form.errors?.title">
+                <ul>
+                    <li *ngIf="form.errors?.title?.required">Todo new item cannot be empty!</li>
+                    <li *ngIf="form.errors?.title?.minlength">
+                        Todo new item is required with minimum length {{ form.errors?.title?.minlength?.requiredLength }} character.
+                    </li>
+                </ul>
+            </div>
+            <!-- Title -->
+        </div>
+        
+        
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button color="warn" [mat-dialog-close]="true" type="submit" cdkFocusInitial>Add</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+</form>

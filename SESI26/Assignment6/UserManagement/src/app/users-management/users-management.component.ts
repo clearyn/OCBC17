@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../Models/user';
 import { UserService } from '../Services/user.service';
 import { MatDialog } from '@angular/material/dialog';
+import { UserReactiveFormComponent } from '../user-reactive-form/user-reactive-form.component';
 @Component({
   selector: 'app-users-management',
   templateUrl: './users-management.component.html',
@@ -24,12 +25,28 @@ export class UsersManagementComponent implements OnInit {
     this.userService.getUsers().subscribe(dataSource => this.dataSource = dataSource);
   };
 
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(UserReactiveFormComponent);
+  getDeleteUserById(id: number){
+    this.userService.deleteUserById(id).subscribe(
+      (res) => {
+        if (res.message) {
+          alert(res.message);
+          this.getUsers();
+        }
+      },
+      (err) => {
+          alert(err);
+          this.getUsers();
+      },
+    );
+    
+  };
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
+  openForm() {
+    const dialogRef = this.dialog.open(UserReactiveFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getUsers();
+    });
+  }
 
 }
