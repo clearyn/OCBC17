@@ -1,9 +1,10 @@
 export interface User {
-    id: number;
-    countryName: string;
-    capital: string;
-    area: number;
-    population: number;
-    gdp: number;
-    currency: string;
+    Id: number;
+    Title: string;
+    FirstName: string;
+    LastName: string;
+    Role: string;
+    Email: string;
+    Password: string;
+    ConfirmPassword: string;
 };
