@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   // GET
-  getUsers() {
+  getUsers(): Observable<any> {
     let api = `${this.endpoint}`;
     return this.http
       .get(api)
