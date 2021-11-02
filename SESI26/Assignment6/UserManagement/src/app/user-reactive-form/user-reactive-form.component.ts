@@ -35,9 +35,9 @@ export class UserReactiveFormComponent implements OnInit  {
       LastName: new FormControl('',[Validators.required, Validators.minLength(5)] ),
       Role: new FormControl('',[Validators.required] ),
       Email: new FormControl('',[Validators.required,Validators.email] ),
-      Password: new FormControl('',[Validators.required,Validators.minLength(6)] ),
+      Password: new FormControl('',[Validators.required,Validators.minLength(6),] ),
       ConfirmPassword: new FormControl(''),
-    }, {validators: passwordValidation}),
+    }, {validators: passwordValidation()}),
     isSubmitted: false,
     editMode:false,
     errors: {}
@@ -135,6 +135,7 @@ export class UserReactiveFormComponent implements OnInit  {
 
   //Handle event submit form
   onSubmit(){
+    console.log(this.form.errors);
     this.switchSubmittedState(true);
     this.validateForm();
     if (Object.keys(this.form.errors).length === 0){
