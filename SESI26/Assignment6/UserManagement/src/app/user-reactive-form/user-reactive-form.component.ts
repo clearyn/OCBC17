@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserForm } from '../Models/user';
 import { passwordValidation } from './password-validation';
 import { UserService } from '../Services/user.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-user-reactive-form',
@@ -19,7 +22,6 @@ export class UserReactiveFormComponent  {
   form: {
     userFormGroup: FormGroup;
     isSubmitted: boolean;
-    editMode: boolean;
     errors: any;
   } = {
     userFormGroup: new FormGroup({
@@ -32,11 +34,12 @@ export class UserReactiveFormComponent  {
       ConfirmPassword: new FormControl(''),
     }, {validators: passwordValidation}),
     isSubmitted: false,
-    editMode: false,
     errors: {}
   }
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+     private dialogReactive: MatDialogRef<UserReactiveFormComponent>,
+     @Inject(MAT_DIALOG_DATA) private isEdit: boolean) { }
 
   //Getter for form spesific value
   get title(){
@@ -123,6 +126,7 @@ export class UserReactiveFormComponent  {
           if (res.message) {
             alert(res.message);
             this.form.userFormGroup.reset();
+            this.dialogReactive.close([]);
           }
         },
         (err) => {

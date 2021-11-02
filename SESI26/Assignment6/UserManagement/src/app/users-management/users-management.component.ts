@@ -9,6 +9,7 @@ import { UserReactiveFormComponent } from '../user-reactive-form/user-reactive-f
   styleUrls: ['./users-management.component.css']
 })
 export class UsersManagementComponent implements OnInit {
+  
   displayedColumns: string[] = ['title', 'firstName', 'lastName', 'role', 'email', 'id'];
   dataSource: User[] = [];
 
@@ -41,10 +42,10 @@ export class UsersManagementComponent implements OnInit {
     
   };
 
-  openForm() {
-    const dialogRef = this.dialog.open(UserReactiveFormComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
+  openForm(isEdit: boolean = false) {
+    const dialogReactive = this.dialog.open(UserReactiveFormComponent, {data:{dataKey: isEdit}});
+    
+    dialogReactive.afterClosed().subscribe(result => {
       this.getUsers();
     });
   }
