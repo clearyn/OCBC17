@@ -1,43 +1,104 @@
-<h2 mat-dialog-title>Add User</h2>
+<h1 mat-dialog-title>Add User</h1>
 <form [formGroup]="form.userFormGroup" (ngSubmit) ="onSubmit()">
-    <mat-dialog-content class="mat-typography">
-        <div layout="column" layout-align="center center">
+    <div mat-dialog-content>
+        <div>
             <!-- Title -->
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-list role="list" *ngIf="form.isSubmitted && form.errors?.title">
+                <mat-list-item role="listitem" *ngIf="form.errors?.title?.required">Title cannot be empty!</mat-list-item>
+                <mat-list-item role="listitem" *ngIf="form.errors?.title?.minlength">
+                    Title minimum length is {{ form.errors?.title?.minlength?.requiredLength }} character.</mat-list-item>
+            </mat-list>
+            <mat-form-field appearance="fill">
                 <mat-label>Title</mat-label>
-                <input (change)="switchSubmittedState(false)" type="text"name="inputTodo" placeholder="Enter Title.."class="form-control"
-                id="title" name="title"formControlName="title" matInput>
+                <input matInput (change)="switchSubmittedState(false)" type="text" class="form-control" formControlName="Title">
             </mat-form-field>
-            <div class="invalid-errors" style="color: red;" *ngIf="form.isSubmitted && form.errors?.title">
-                <ul>
-                    <li *ngIf="form.errors?.title?.required">Todo new item cannot be empty!</li>
-                    <li *ngIf="form.errors?.title?.minlength">
-                        Todo new item is required with minimum length {{ form.errors?.title?.minlength?.requiredLength }} character.
-                    </li>
-                </ul>
-            </div>
-            <!-- Title -->
-            <!-- Title -->
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Title</mat-label>
-                <input (change)="switchSubmittedState(false)" type="text"name="inputTodo" placeholder="Enter Title.."class="form-control"
-                id="title" name="title"formControlName="title" matInput>
-            </mat-form-field>
-            <div class="invalid-errors" style="color: red;" *ngIf="form.isSubmitted && form.errors?.title">
-                <ul>
-                    <li *ngIf="form.errors?.title?.required">Todo new item cannot be empty!</li>
-                    <li *ngIf="form.errors?.title?.minlength">
-                        Todo new item is required with minimum length {{ form.errors?.title?.minlength?.requiredLength }} character.
-                    </li>
-                </ul>
-            </div>
             <!-- Title -->
         </div>
-        
-        
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-button color="warn" [mat-dialog-close]="true" type="submit" cdkFocusInitial>Add</button>
-        <button mat-button mat-dialog-close>Cancel</button>
-    </mat-dialog-actions>
+        <div>
+            <!-- First -->
+            <mat-list role="list" *ngIf="form.isSubmitted && form.errors?.firstName">
+                <mat-list-item role="listitem" *ngIf="form.errors?.firstName?.required">First name cannot be empty!</mat-list-item>
+                <mat-list-item role="listitem" *ngIf="form.errors?.firstName?.minlength">
+                    First name minimum length is {{ form.errors?.firstName?.minlength?.requiredLength }} character.</mat-list-item>
+            </mat-list>
+            <mat-form-field appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput (change)="switchSubmittedState(false)" type="text" class="form-control" formControlName="FirstName">
+            </mat-form-field>
+            <!-- First -->
+        </div>
+        <div>
+            <!-- Last -->
+            <mat-list role="list" *ngIf="form.isSubmitted && form.errors?.lastName">
+                <mat-list-item role="listitem" *ngIf="form.errors?.lastName?.required">Last name cannot be empty!</mat-list-item>
+                <mat-list-item role="listitem" *ngIf="form.errors?.lastName?.minlength">
+                    Last name minimum length is {{ form.errors?.lastName?.minlength?.requiredLength }} character.</mat-list-item>
+            </mat-list>
+            <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput (change)="switchSubmittedState(false)" type="text" class="form-control" formControlName="LastName">
+            </mat-form-field>
+            <!-- Last -->
+        </div>
+        <div>
+            <!-- Role -->
+            <mat-list role="list" *ngIf="form.isSubmitted && form.errors?.role">
+                <mat-list-item role="listitem" *ngIf="form.errors?.role?.required">Role cannot be empty!</mat-list-item>
+            </mat-list>
+            <mat-form-field appearance="fill">
+                <mat-label>Role</mat-label>
+                <mat-select (selectionChange)="switchSubmittedState(false)" formControlName="Role">
+                    <mat-option [value]="">
+                        Select role...
+                    </mat-option>
+                    <mat-option *ngFor="let role of roles" [value]="role.value">
+                        {{role.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- Role -->
+        </div>
+        <div>
+            <!-- Email -->
+            <mat-list role="list" *ngIf="form.isSubmitted && form.errors?.email">
+                <mat-list-item role="listitem" *ngIf="form.errors?.email?.required">Email cannot be empty!</mat-list-item>
+                <mat-list-item role="listitem" *ngIf="form.errors?.email?.email">
+                    Enter valid email format</mat-list-item>
+            </mat-list>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput (change)="switchSubmittedState(false)" type="email" class="form-control" formControlName="Email">
+            </mat-form-field>
+            <!-- Email -->
+        </div>
+        <div>
+            <!-- Password -->
+            <mat-list role="list" *ngIf="form.isSubmitted && form.errors?.password">
+                <mat-list-item role="listitem" *ngIf="form.errors?.password?.required">Password cannot be empty!</mat-list-item>
+                <mat-list-item role="listitem" *ngIf="form.errors?.password?.minlength">
+                    Password minimum length is {{ form.errors?.password?.minlength?.requiredLength }} character.</mat-list-item>
+            </mat-list>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput (change)="switchSubmittedState(false)" type="password" class="form-control" formControlName="Password">
+            </mat-form-field>
+            <!-- Password -->
+        </div>
+        <div>
+            <!-- CPassword -->
+            <mat-list role="list" *ngIf="form.isSubmitted && form.errors?.confirmPassword">
+                <mat-list-item role="listitem" *ngIf="form.errors?.notSame">
+                    Confirm password must same with password</mat-list-item>
+            </mat-list>
+            <mat-form-field appearance="fill">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput (change)="switchSubmittedState(false)" type="password" class="form-control" formControlName="ConfirmPassword">
+            </mat-form-field>
+            <!-- CPassword -->
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-raised-button type="submit">Add</button>
+        <button mat-button mat-raised-button color="warn" [mat-dialog-close]="">Cancel</button>
+    </div>
 </form>

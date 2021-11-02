@@ -11,21 +11,28 @@ import { UserService } from '../Services/user.service';
 })
 export class UserReactiveFormComponent  {
   
+  roles  = [
+    {name: 'Admin', value: 'Admin'},
+    {name: 'User', value: 'User'}
+  ]
+  
   form: {
     userFormGroup: FormGroup;
     isSubmitted: boolean;
+    editMode: boolean;
     errors: any;
   } = {
     userFormGroup: new FormGroup({
       Title: new FormControl('',[Validators.required,Validators.minLength(5)] ),
       FirstName: new FormControl('',[Validators.required,Validators.minLength(5)] ),
       LastName: new FormControl('',[Validators.required, Validators.minLength(5)] ),
-      Role: new FormControl('',[Validators.required,Validators.minLength(5)] ),
+      Role: new FormControl('',[Validators.required] ),
       Email: new FormControl('',[Validators.required,Validators.email] ),
       Password: new FormControl('',[Validators.required,Validators.minLength(6)] ),
-      ConfirmPassword: new FormControl('',[Validators.required,Validators.minLength(6)] ),
+      ConfirmPassword: new FormControl(''),
     }, {validators: passwordValidation}),
     isSubmitted: false,
+    editMode: false,
     errors: {}
   }
 
@@ -60,12 +67,41 @@ export class UserReactiveFormComponent  {
     return this.form.userFormGroup.get('ConfirmPassword');
   };
 
+  get validators(){
+    return this.form.userFormGroup.get('validators');
+  };
+
+
   //Push error & Delete error from array object in form
   validateForm () {
     if(this.title?.errors)
-      this.form.errors.todoNewItems = { ...this.title?.errors }
+      this.form.errors.title = { ...this.title?.errors }
     else
-      delete this.form.errors.todoNewItems
+      delete this.form.errors.title
+    if(this.firstName?.errors)
+      this.form.errors.firstName = { ...this.firstName?.errors }
+    else
+      delete this.form.errors.firstName
+    if(this.lastName?.errors)
+      this.form.errors.lastName = { ...this.lastName?.errors }
+    else
+      delete this.form.errors.lastName
+    if(this.role?.errors)
+      this.form.errors.role = { ...this.role?.errors }
+    else
+      delete this.form.errors.role
+    if(this.email?.errors)
+      this.form.errors.email = { ...this.email?.errors }
+    else
+      delete this.form.errors.email
+    if(this.password?.errors)
+      this.form.errors.password = { ...this.password?.errors }
+    else
+      delete this.form.errors.password
+    if(this.confirmPassword?.errors)
+      this.form.errors.confirmPassword = { ...this.confirmPassword?.errors }
+    else
+      delete this.form.errors.confirmPassword
   };
 
   //Handle event submit form
@@ -74,16 +110,26 @@ export class UserReactiveFormComponent  {
     this.validateForm();
     if (Object.keys(this.form.errors).length === 0){
       const userForm: UserForm = {
-        title: this.form.userFormGroup.value.title,
-        firstName: this.form.userFormGroup.value.firstName,
-        lastName: this.form.userFormGroup.value.lastName,
-        role: this.form.userFormGroup.value.role,
-        email: this.form.userFormGroup.value.email,
-        password: this.form.userFormGroup.value.password,
-        confirmPassword: this.form.userFormGroup.value.confirmPassword,
+        Title: this.form.userFormGroup.value.Title,
+        FirstName: this.form.userFormGroup.value.FirstName,
+        LastName: this.form.userFormGroup.value.LastName,
+        Role: this.form.userFormGroup.value.Role,
+        Email: this.form.userFormGroup.value.Email,
+        Password: this.form.userFormGroup.value.Password,
+        ConfirmPassword: this.form.userFormGroup.value.ConfirmPassword,
       };
-      this.userService.postUser(userForm);
-      this.form.userFormGroup.reset();
+      this.userService.postUser(userForm).subscribe(
+        (res) => {
+          if (res.message) {
+            alert(res.message);
+            this.form.userFormGroup.reset();
+          }
+        },
+        (err) => {
+            alert(err);
+        },
+      );
+      
     }
   };
 

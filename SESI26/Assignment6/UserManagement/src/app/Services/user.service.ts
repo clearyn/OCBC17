@@ -37,7 +37,7 @@ export class UserService {
   }
 
   // PUT: id
-  putUserById(id: Number, user: User) {
+  putUserById(id: Number, user: User): Observable<any> {
     let api = `${this.endpoint}/${id}`;
     return this.http
       .put(api, user)
