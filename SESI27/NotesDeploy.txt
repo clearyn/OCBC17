@@ -1,0 +1,17 @@
+npm i express --save
+ng build
+
+//package json
+"start" -> node server.js
+"build" -> ng build --prod
+
+buat server.js di paling luar
+fucntion requreHTTPS (req, res, next){
+	//membuat semua request yang sebelumnya http biasa menjadi https
+	if(){
+	}
+}
+
+
+git commit -m "Initial commit"
+git push origin master

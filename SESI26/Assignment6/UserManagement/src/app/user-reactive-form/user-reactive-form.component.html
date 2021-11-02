@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Add User</h1>
+<h1 mat-dialog-title>{{formTitle}}</h1>
 <form [formGroup]="form.userFormGroup" (ngSubmit) ="onSubmit()">
     <div mat-dialog-content>
         <div>
@@ -10,7 +10,7 @@
             </mat-list>
             <mat-form-field appearance="fill">
                 <mat-label>Title</mat-label>
-                <input matInput (change)="switchSubmittedState(false)" type="text" class="form-control" formControlName="Title">
+                <input matInput (change)="switchSubmittedState(false)" type="text" class="form-control" formControlName="Title" [value]='1'>
             </mat-form-field>
             <!-- Title -->
         </div>

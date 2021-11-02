@@ -21,7 +21,7 @@ export class UserService {
   }
 
   // GET: id
-  getUserById(id: Number) {
+  getUserById(id: Number): Observable<any> {
     let api = `${this.endpoint}/${id}`;
     return this.http
       .get(api)
@@ -37,10 +37,10 @@ export class UserService {
   }
 
   // PUT: id
-  putUserById(id: Number, user: User): Observable<any> {
+  putUserById(id: Number, userForm: UserForm): Observable<any> {
     let api = `${this.endpoint}/${id}`;
     return this.http
-      .put(api, user)
+      .put(api, userForm)
       .pipe(catchError(this.handleError));
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserForm } from '../Models/user';
 import { passwordValidation } from './password-validation';
@@ -12,16 +12,21 @@ import { Inject } from '@angular/core';
   templateUrl: './user-reactive-form.component.html',
   styleUrls: ['./user-reactive-form.component.css']
 })
-export class UserReactiveFormComponent  {
+export class UserReactiveFormComponent implements OnInit  {
   
+  formTitle = '';
+
   roles  = [
     {name: 'Admin', value: 'Admin'},
     {name: 'User', value: 'User'}
   ]
+
+  dataEdit: any;
   
   form: {
     userFormGroup: FormGroup;
     isSubmitted: boolean;
+    editMode:boolean;
     errors: any;
   } = {
     userFormGroup: new FormGroup({
@@ -34,12 +39,33 @@ export class UserReactiveFormComponent  {
       ConfirmPassword: new FormControl(''),
     }, {validators: passwordValidation}),
     isSubmitted: false,
+    editMode:false,
     errors: {}
   }
 
   constructor(private userService: UserService,
      private dialogReactive: MatDialogRef<UserReactiveFormComponent>,
-     @Inject(MAT_DIALOG_DATA) private isEdit: boolean) { }
+     @Inject(MAT_DIALOG_DATA) private data: any) { }
+
+  ngOnInit(): void {
+    if (this.data.isEdit == true && this.data.id != undefined){
+      this.form.editMode = true;
+      this.formTitle = 'Edit User';
+      this.userService.getUserById(this.data.id).subscribe(res => {
+        this.dataEdit = res;
+        this.form.userFormGroup.patchValue({
+          Title: this.dataEdit.title,
+          FirstName: this.dataEdit.firstName,
+          LastName: this.dataEdit.lastName,
+          Role: this.dataEdit.role,
+          Email: this.dataEdit.email,
+        });
+      });
+    }else{
+      this.formTitle = 'Add User';
+    }
+      
+  }
 
   //Getter for form spesific value
   get title(){
@@ -121,34 +147,35 @@ export class UserReactiveFormComponent  {
         Password: this.form.userFormGroup.value.Password,
         ConfirmPassword: this.form.userFormGroup.value.ConfirmPassword,
       };
-      this.userService.postUser(userForm).subscribe(
-        (res) => {
-          if (res.message) {
-            alert(res.message);
-            this.form.userFormGroup.reset();
-            this.dialogReactive.close([]);
-          }
-        },
-        (err) => {
-            alert(err);
-        },
-      );
+      if (this.form.editMode == true) {
+        this.userService.putUserById(this.data.id, userForm).subscribe(
+          (res) => {
+            if (res.message) {
+              alert(res.message);
+              this.form.userFormGroup.reset();
+              this.dialogReactive.close([]);
+            }
+          },
+          (err) => {
+              alert(err);
+          },
+        );
+      }else{
+        this.userService.postUser(userForm).subscribe(
+          (res) => {
+            if (res.message) {
+              alert(res.message);
+              this.form.userFormGroup.reset();
+              this.dialogReactive.close([]);
+            }
+          },
+          (err) => {
+              alert(err);
+          },
+        );
+      }
       
     }
-  };
-
-  postUser(userForm: UserForm){
-    this.userService.postUser(userForm).subscribe(
-      (res) => {
-        if (res.message) {
-          alert(res.message);
-        }
-      },
-      (err) => {
-          alert(err);
-      },
-    );
-    
   };
 
   //Change submitted form state

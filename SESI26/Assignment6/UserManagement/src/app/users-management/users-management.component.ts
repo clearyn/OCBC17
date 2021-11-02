@@ -42,8 +42,8 @@ export class UsersManagementComponent implements OnInit {
     
   };
 
-  openForm(isEdit: boolean = false) {
-    const dialogReactive = this.dialog.open(UserReactiveFormComponent, {data:{dataKey: isEdit}});
+  openForm(isEdit: boolean = false, id?: number) {
+    const dialogReactive = this.dialog.open(UserReactiveFormComponent, {data:{isEdit: isEdit, id: id}});
     
     dialogReactive.afterClosed().subscribe(result => {
       this.getUsers();
