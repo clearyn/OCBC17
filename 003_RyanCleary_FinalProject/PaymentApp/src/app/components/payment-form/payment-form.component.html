@@ -4,40 +4,45 @@
     <div class="row g-3">
         <div class="col-12">
             <label for="address" class="form-label">Card Owner Name</label>
-            <input type="text" class="form-control" (change)="switchSubmittedState(false)" id="cardOwnerName"
-                class="form-control" formControlName="cardOwnerName" [value]='1' placeholder="Enter owner name"
-                required="">
+            <input type="text" class="form-control" (change)="switchSubmittedState(false)" maxlength="20"
+                id="cardOwnerName" class="form-control" formControlName="cardOwnerName" [value]='1'
+                placeholder="Enter owner name" required="">
             <div class="list-group">
                 <li class="list-group-item list-group-item-action list-group-item-danger"
                     *ngIf="form.errors?.cardOwnerName?.required">owner name cannot be empty!</li>
+                    <li class="list-group-item list-group-item-action list-group-item-danger"
+                    *ngIf="form.errors?.cardOwnerName?.maxlength">owner name maximum length is {{
+                    form.errors?.cardOwnerName?.maxlength?.requiredLength }} character.</li>
             </div>
         </div>
 
         <div class="col-12">
             <label for="address" class="form-label">Card Number</label>
             <input type="text" class="form-control" (change)="switchSubmittedState(false)" id="cardNumber"
-                class="form-control" formControlName="cardNumber" placeholder="12 Digit" required="">
+                class="form-control" formControlName="cardNumber" placeholder="12 Digit" maxlength="12" required="">
             <div class="list-group">
                 <li class="list-group-item list-group-item-action list-group-item-danger"
                     *ngIf="form.errors?.cardNumber?.required">card number cannot be empty!</li>
                 <li class="list-group-item list-group-item-action list-group-item-danger"
-                    *ngIf="form.errors?.cardNumber?.minlength || form.errors?.cardNumber?.maxlength">card numberlength is 12 digits.</li>
+                    *ngIf="form.errors?.cardNumber?.minlength || form.errors?.cardNumber?.maxlength">card numberlength
+                    is 12 digits.</li>
                 <li class="list-group-item list-group-item-action list-group-item-danger"
-                    *ngIf="form.errors?.cardNumber?.pattern">card number numbers only!</li>
+                    *ngIf="form.errors?.cardNumber?.pattern">card number only!</li>
             </div>
         </div>
 
         <div class="col-sm-6">
             <label for="firstName" class="form-label">Security Code</label>
-            <input type="password" class="form-control" (change)="switchSubmittedState(false)" id="securityCode"
-                class="form-control" formControlName="securityCode" placeholder="Ex: 123" value="" required="">
+            <input type="password" class="form-control" (change)="switchSubmittedState(false)" maxlength="10"
+                id="securityCode" class="form-control" formControlName="securityCode" placeholder="Ex: 123" value=""
+                required="">
             <div class="list-group">
                 <li class="list-group-item list-group-item-action list-group-item-danger"
                     *ngIf="form.errors?.securityCode?.required">security code cannot be empty!</li>
                 <li class="list-group-item list-group-item-action list-group-item-danger"
                     *ngIf="form.errors?.securityCode?.minlength">security code minimum length is {{
                     form.errors?.securityCode?.minlength?.requiredLength }} character.</li>
-                    <li class="list-group-item list-group-item-action list-group-item-danger"
+                <li class="list-group-item list-group-item-action list-group-item-danger"
                     *ngIf="form.errors?.securityCode?.maxlength">security code maximum length is {{
                     form.errors?.securityCode?.maxlength?.requiredLength }} character.</li>
                 <li class="list-group-item list-group-item-action list-group-item-danger"

@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, Optional, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PaymentDetailForm } from 'src/app/models/paymentdetail';
 import { PaymentdetailService } from 'src/app/services/paymentdetail.service';
@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import Swal from 'sweetalert2';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-payment-form',
@@ -13,12 +14,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./payment-form.component.css']
 })
 export class PaymentFormComponent implements OnInit {
+  @Output("getPaymentDetails") getPaymentDetails: EventEmitter<any> = new EventEmitter();
 
   formTitle = '';
 
   dataEdit: any;
 
-  patternNumber = /^-?(0|[1-9]\d*)?$/;
+  patternNumber = /^-?([0-9]\d*)?$/;
 
   toastSuccess = Swal.mixin({
     toast: true,
@@ -39,7 +41,7 @@ export class PaymentFormComponent implements OnInit {
     errors: any;
   } = {
       userFormGroup: new FormGroup({
-        cardOwnerName: new FormControl('', [Validators.required]),
+        cardOwnerName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
         cardNumber: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern(this.patternNumber)]),
         expirationDate: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(`^((0[1-9])|(1[0-2]))/([0-9]{4})$`)]),
         securityCode: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(10), Validators.pattern(this.patternNumber)]),
@@ -56,6 +58,8 @@ export class PaymentFormComponent implements OnInit {
   ) { };
 
   ngOnInit(): void {
+    if (!this.data)
+      this.data = { isEdit: false, id: undefined };
     if (this.data.isEdit == true && this.data.id != undefined) {
       this.form.editMode = true;
       this.formTitle = 'Edit Payment Detail';
@@ -151,6 +155,7 @@ export class PaymentFormComponent implements OnInit {
                 title: 'Data recorded'
               })
               this.form.userFormGroup.reset();
+              this.getPaymentDetails.emit();
             }
           },
           (err) => {
