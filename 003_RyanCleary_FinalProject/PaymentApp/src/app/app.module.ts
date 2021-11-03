@@ -9,13 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { PaymentDetailRegisterComponent } from './components/payment-detail-register/payment-detail-register.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaymentDetailRegisterComponent,
-    NavbarComponent
+    PaymentDetailRegisterComponent
   ],
   imports: [
     BrowserModule,
