@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PaymentDetail, PaymentDetailForm } from 'src/app/models/paymentdetail';
 import { PaymentdetailService } from 'src/app/services/paymentdetail.service';
+import { MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
 @Component({
@@ -21,7 +22,7 @@ export class PaymentDetailRegisterComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
 
-  constructor(private paymentService: PaymentdetailService,public dialog: MatDialog) {
+  constructor(private paymentService: PaymentdetailService, public dialog: MatDialog) {
   }
 
   getPaymentDetails() {
@@ -49,9 +50,8 @@ export class PaymentDetailRegisterComponent implements OnInit {
     Swal.fire({
       title: `Do you want to delete id: ${id}`,
       showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Save',
-      denyButtonText: `Don't save`,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
       showLoaderOnConfirm: true,
       allowEscapeKey: false,
       preConfirm: (login) => {
@@ -65,7 +65,7 @@ export class PaymentDetailRegisterComponent implements OnInit {
     })
   }
 
-  getDeleteUserById(id: number): boolean{
+  getDeleteUserById(id: number): boolean {
     this.paymentService.deletePaymentDetailById(id).subscribe(
       (res) => {
         if (res['success'] == true) {
@@ -83,8 +83,7 @@ export class PaymentDetailRegisterComponent implements OnInit {
   };
 
   openForm(isEdit: boolean = false, id?: number) {
-    const dialogReactive = this.dialog.open(PaymentFormComponent, {data:{isEdit: isEdit, id: id}});
-    
+    const dialogReactive = this.dialog.open(PaymentFormComponent, { data: { isEdit: isEdit, id: id } });
     dialogReactive.afterClosed().subscribe(result => {
       this.getPaymentDetails();
     });
