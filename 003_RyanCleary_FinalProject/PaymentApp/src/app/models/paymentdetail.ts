@@ -7,7 +7,6 @@ export interface PaymentDetail {
 };
 
 export interface PaymentDetailForm {
-    paymentDetailId: number;
     cardOwnerName: string;
     cardNumber: string;
     expirationDate: string;
