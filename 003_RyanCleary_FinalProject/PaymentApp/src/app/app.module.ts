@@ -21,7 +21,7 @@ import { PaymentDetailRegisterComponent } from './components/payment-detail-regi
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

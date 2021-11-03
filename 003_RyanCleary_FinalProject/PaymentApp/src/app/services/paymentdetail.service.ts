@@ -13,7 +13,7 @@ export class PaymentdetailService {
   constructor(private http: HttpClient) { }
 
   // GET
-  getPaymentDetails(): Observable<any> {
+  getPaymentDetails(): Observable<any>{
     let api = `${this.endpoint}`;
     return this.http
       .get(api)

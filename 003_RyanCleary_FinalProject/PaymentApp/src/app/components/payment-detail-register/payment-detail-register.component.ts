@@ -1,36 +1,47 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { PaymentDetail, PaymentDetailForm } from 'src/app/models/paymentdetail';
+import { PaymentdetailService } from 'src/app/services/paymentdetail.service';
+/**
+ * @title Data table with sorting, pagination, and filtering.
+ */
 @Component({
   selector: 'app-payment-detail-register',
   templateUrl: './payment-detail-register.component.html',
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./payment-detail-register.component.css']
 })
 export class PaymentDetailRegisterComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['cardOwnerName', 'cardNumber', 'expirationDate', 'action'];
+  dataSource: MatTableDataSource<PaymentDetail> = new MatTableDataSource();
 
-  constructor() { }
+  @ViewChild(MatPaginator, { static: true })
+  paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true })
+  sort!: MatSort;
 
-  ngOnInit(): void {
+  constructor(private paymentService: PaymentdetailService) {
   }
 
+  getUsers() {
+    this.paymentService.getPaymentDetails().subscribe(dataSource => {
+      this.dataSource = new MatTableDataSource(dataSource['result']);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  };
+
+  ngOnInit() {
+    this.getUsers();
+  }
+
+  applyFilter(filterValue: KeyboardEvent | '' = '') {
+    let input = filterValue ? (filterValue.target as HTMLInputElement).value : '';
+    this.dataSource.filter = input.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
