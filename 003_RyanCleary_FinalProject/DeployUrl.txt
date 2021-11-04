@@ -1,0 +1,7 @@
+Nama: Ryan Cleary
+Kode: FSDO001ONL003
+Heroku Final Project: https://paymentapp-angular-final-003.herokuapp.com/PaymentDetailRegister
+Heroku Api: https://paymentapi-003.herokuapp.com/swagger/index.html
+Github Final Project: https://github.com/clearyn/OCBC17/tree/master/003_RyanCleary_FinalProject
+Github Deploy: https://github.com/clearyn/paymentapp-angular
+
